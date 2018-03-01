@@ -4,8 +4,9 @@ public class Viaje {
     private int s;
     private int f;
     private Coche cocheAsignado;
+    int id;
 
-    public Viaje(Celda celdaInicio, Celda celdaFin, int s, int f) {
+    public Viaje(Celda celdaInicio, Celda celdaFin, int s, int f, int id) {
         this.celdaInicio = celdaInicio;
         this.celdaFin = celdaFin;
         this.s = s;

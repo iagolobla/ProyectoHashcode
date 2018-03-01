@@ -8,12 +8,16 @@ public class Main {
 
     static int R, C, F, N, B, T, TActual = 0;
     static Celda[][] celdas;
+    static ArrayList<Viaje> viajes;
+    static ArrayList<Coche> coches;
 
     public static void main (String[] args) throws Exception {
 
-        ArrayList<Viaje> viajes = new ArrayList<>();
+        viajes = new ArrayList<>();
 
-        String in = "a_example.in";
+        String archivo = "a_example";
+        String in = archivo + ".in";
+        String out = archivo + ".out";
 
         BufferedReader input = leerArchivo(in);
 
@@ -49,13 +53,12 @@ public class Main {
             s = valores[4];
             f = valores[5];
 
-            Viaje v = new Viaje(inicio, fin, s, f);
+            Viaje v = new Viaje(inicio, fin, s, f, i);
             viajes.add(v);
-
-
         }
+        input.close();
 
-
+        for (int i = 0; i < F; i++) coches.add(new Coche());
 
 
 

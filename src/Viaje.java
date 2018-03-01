@@ -11,6 +11,7 @@ public class Viaje {
         this.celdaFin = celdaFin;
         this.s = s;
         this.f = f;
+        celdaInicio.anadirViajesInicio(this);
     }
 
     public int calcularDistancia() {
@@ -59,5 +60,13 @@ public class Viaje {
 
     public void setCocheAsignado(Coche cocheAsignado) {
         this.cocheAsignado = cocheAsignado;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

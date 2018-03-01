@@ -14,7 +14,7 @@ public class Main {
 
     public static void main (String[] args) throws Exception {
 
-
+        viajes = new HashMap<>();
 
         String archivo = "a_example";
         String in = archivo + ".in";
@@ -58,7 +58,9 @@ public class Main {
             f = valores[5];
 
             Viaje v = new Viaje(inicio, fin, s, f, i);
-            viajes.put(i, v);
+            if(v.calcularDistancia() <= (f-s)){
+                viajes.put(v.getId(), v);
+            }
         }
         input.close();
 

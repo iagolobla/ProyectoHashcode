@@ -15,11 +15,14 @@ public class Viaje {
     }
 
     public int calcularDistancia() {
-        int vertical = celdaInicio.getPunto().x - celdaFin.getPunto().x;
-        int horizontal = celdaInicio.getPunto().y - celdaFin.getPunto().y;
+        return celdaInicio.calcularDistancia(celdaFin);
+    }
 
-        return Math.abs(vertical) + Math.abs(horizontal);
-
+    public boolean estaExpirado(){
+        if(Main.TActual >= this.f){
+            return true;
+        }
+        return false;
     }
 
     public Celda getCeldaInicio() {

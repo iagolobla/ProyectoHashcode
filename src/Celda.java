@@ -8,6 +8,14 @@ public class Celda {
 
     public Celda(Point punto) {
         this.punto = punto;
+        viajesInicio = new ArrayList<>();
+    }
+
+    public int calcularDistancia(Celda c){
+        int vertical = this.getPunto().x - c.getPunto().x;
+        int horizontal = this.getPunto().y - c.getPunto().y;
+
+        return Math.abs(vertical) + Math.abs(horizontal);
     }
 
     public Point getPunto() {

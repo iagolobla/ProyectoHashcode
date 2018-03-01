@@ -2,11 +2,13 @@ import java.util.ArrayList;
 
 public class Coche {
 
-    private ArrayList<Viaje> viajesCoche;
+    private ArrayList<Viaje> viajesCompletados;
+    private Viaje viajeActual = null;
     private Celda celdaActual;
     private int tickFinalViaje = 0;
 
     public Coche(Celda inicio) {
+        viajesCompletados = new ArrayList<>();
         this.celdaActual = inicio;
     }
 
@@ -14,10 +16,52 @@ public class Coche {
         this.tickFinalViaje = Main.TActual+distancia;
     }
 
-    public void moverCoche(Celda celdaFinal){
+    public void moverCoche(){
         if(this.tickFinalViaje == Main.TActual){
-            celdaActual = celdaFinal;
+            celdaActual = this.getViajeActual().getCeldaFin();
+            this.viajesCompletados.add(this.viajeActual);
+            this.viajeActual = null;
         }
+    }
+
+    public int calcularTiempoViaje(Viaje v){
+        //Se coge lo que tarda mas: En llegar a la celda de inicio o en llegar a la hora de arranque
+        int tiempoArrancar = Math.max(this.getCeldaActual().calcularDistancia(v.getCeldaInicio()),v.getS()-Main.TActual);
+        return tiempoArrancar+v.calcularDistancia();
+    }
+
+    public ArrayList<Viaje> getViajesCompletados() {
+        return viajesCompletados;
+    }
+
+    public void setViajesCompletados(ArrayList<Viaje> viajesCompletados) {
+        this.viajesCompletados = viajesCompletados;
+    }
+
+    public Viaje getViajeActual() {
+        return viajeActual;
+    }
+
+    public void setViajeActual(Viaje viajeActual) {
+        this.viajeActual = viajeActual;
+        empezarViaje(this.calcularTiempoViaje(viajeActual));
+        viajeActual.setCocheAsignado(this);
+    }
+
+    public Celda getCeldaActual() {
+        return celdaActual;
+    }
+
+    public void setCeldaActual(Celda celdaActual) {
+        this.celdaActual = celdaActual;
+    }
+
+    public int getTickFinalViaje() {
+        return tickFinalViaje;
+    }
+
+    public void setTickFinalViaje(int tickFinalViaje) {
+        this.tickFinalViaje = tickFinalViaje;
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Main {
 
-    static int R, C, F, N, B, T, TActual = 0;
+    public static int R, C, F, N, B, T, TActual = 0;
     static Celda[][] celdas;
     static HashMap<Integer, Viaje> viajes;
     static ArrayList<Coche> coches;
@@ -65,6 +65,42 @@ public class Main {
         input.close();
 
         for (int i = 0; i < F; i++) coches.add(new Coche(celdas[0][0]));
+
+        //Iteramos por los Ticks
+        for(TActual = 0;TActual < T;TActual++){
+            for(Coche coche : coches){
+                int mejorDistancia = 0;
+                ArrayList<Viaje> viajesCoche = new ArrayList<>();
+                if(coche.getViajeActual() == null){
+                    //Codigo para asignar un viaje
+                    for(Viaje viaje : viajes.values()){
+                        if(!viaje.estaExpirado()){
+                            //Si no tiene un coche asignado el viaje
+                            if(viaje.getCocheAsignado() == null){
+                                //Si le da tiempo a completar el viaje
+                                if(coche.calcularTiempoViaje(viaje) + TActual <= viaje.getF()){
+                                    //Si el viaje tiene una longitud mejor que mejorDistancia
+                                    if(viaje.calcularDistancia() > mejorDistancia){
+                                        mejorDistancia = viaje.calcularDistancia();
+                                        viajesCoche.add(viaje);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //Iteramos por los mejores viajes para el coche y escogemos el mas largo
+                    for(Viaje viaje : viajesCoche){
+                        if(viaje.calcularDistancia() == mejorDistancia){
+                            coche.setViajeActual(viaje);
+                            break;
+                        }
+                    }
+                }
+                if(coche.getViajeActual() != null) {
+                    coche.moverCoche();
+                }
+            }
+        }
 
     }
 

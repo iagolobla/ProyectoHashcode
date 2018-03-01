@@ -11,6 +11,7 @@ public class Viaje {
         this.celdaFin = celdaFin;
         this.s = s;
         this.f = f;
+        this.id = id;
         celdaInicio.anadirViajesInicio(this);
     }
 

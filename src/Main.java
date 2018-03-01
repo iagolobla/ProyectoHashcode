@@ -64,6 +64,10 @@ public class Main {
             }
         }
         input.close();
+        input = null;
+
+        System.gc();
+
 
         for (int i = 0; i < F; i++) coches.add(new Coche(celdas[0][0]));
 

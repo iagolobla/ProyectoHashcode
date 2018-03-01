@@ -4,6 +4,13 @@ public class Viaje {
     private int s;
     private int f;
 
+    public Viaje(Celda celdaInicio, Celda celdaFin, int s, int f) {
+        this.celdaInicio = celdaInicio;
+        this.celdaFin = celdaFin;
+        this.s = s;
+        this.f = f;
+    }
+
     public Celda getCeldaInicio() {
         return celdaInicio;
     }

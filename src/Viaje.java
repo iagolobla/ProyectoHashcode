@@ -3,12 +3,21 @@ public class Viaje {
     private Celda celdaInicio, celdaFin;
     private int s;
     private int f;
+    private Coche cocheAsignado;
 
     public Viaje(Celda celdaInicio, Celda celdaFin, int s, int f) {
         this.celdaInicio = celdaInicio;
         this.celdaFin = celdaFin;
         this.s = s;
         this.f = f;
+    }
+
+    public int calcularDistancia() {
+        int vertical = celdaInicio.getPunto().x - celdaFin.getPunto().x;
+        int horizontal = celdaInicio.getPunto().y - celdaFin.getPunto().y;
+
+        return Math.abs(vertical) + Math.abs(horizontal);
+
     }
 
     public Celda getCeldaInicio() {
@@ -41,5 +50,13 @@ public class Viaje {
 
     public void setF(int f) {
         this.f = f;
+    }
+
+    public Coche getCocheAsignado() {
+        return cocheAsignado;
+    }
+
+    public void setCocheAsignado(Coche cocheAsignado) {
+        this.cocheAsignado = cocheAsignado;
     }
 }

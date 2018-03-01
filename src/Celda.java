@@ -7,4 +7,12 @@ public class Celda {
     public Celda(Point punto) {
         this.punto = punto;
     }
+
+    public Point getPunto() {
+        return punto;
+    }
+
+    public void setPunto(Point punto) {
+        this.punto = punto;
+    }
 }

@@ -46,8 +46,8 @@ public class Main {
             Celda inicio = new Celda(new Point(valores[0], valores[1]));
             Celda fin = new Celda(new Point(valores[2], valores[3]));
 
-            int s = valores[4];
-            int s = valores[5];
+            s = valores[4];
+            f = valores[5];
 
             Viaje v = new Viaje(inicio, fin, s, f);
             viajes.add(v);

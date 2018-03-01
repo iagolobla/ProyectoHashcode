@@ -3,17 +3,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
 
     static int R, C, F, N, B, T, TActual = 0;
     static Celda[][] celdas;
-    static ArrayList<Viaje> viajes;
+    static HashMap<Integer, Viaje> viajes;
     static ArrayList<Coche> coches;
 
     public static void main (String[] args) throws Exception {
 
-        viajes = new ArrayList<>();
+
 
         String archivo = "a_example";
         String in = archivo + ".in";
@@ -30,6 +31,9 @@ public class Main {
         N = Integer.parseInt(tokens[3]);
         B = Integer.parseInt(tokens[4]);
         T = Integer.parseInt(tokens[5]);
+
+        viajes = new HashMap<>(N, 1);
+        coches = new ArrayList<>(F);
 
         celdas = new Celda[R][C];
 
@@ -54,11 +58,11 @@ public class Main {
             f = valores[5];
 
             Viaje v = new Viaje(inicio, fin, s, f, i);
-            viajes.add(v);
+            viajes.put(i, v);
         }
         input.close();
 
-        for (int i = 0; i < F; i++) coches.add(new Coche());
+        for (int i = 0; i < F; i++) coches.add(new Coche(celdas[0][0]));
 
 
 

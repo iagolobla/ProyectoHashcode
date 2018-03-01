@@ -75,6 +75,7 @@ public class Main {
         for(TActual = 0;TActual < T;TActual++){
             for(Coche coche : coches){
                 int mejorDistancia = 0;
+                int mejorDistanciaBonus = 0;
                 ArrayList<Viaje> viajesCoche = new ArrayList<>();
                 ArrayList<Viaje> viajesBonus = new ArrayList<>();
                 if(coche.getViajeActual() == null){
@@ -88,8 +89,8 @@ public class Main {
                                     //Criba de Bonus
                                     if(coche.getCeldaActual().calcularDistancia(viaje.getCeldaInicio())+TActual <= viaje.getS()) {
                                         //Si el viaje tiene una longitud mejor que mejorDistancia
-                                        if (viaje.calcularDistancia() > mejorDistancia) {
-                                            mejorDistancia = viaje.calcularDistancia();
+                                        if (viaje.calcularDistancia() > mejorDistanciaBonus) {
+                                            mejorDistanciaBonus = viaje.calcularDistancia();
                                             viajesBonus.add(viaje);
                                         }
                                     }else{
@@ -113,7 +114,7 @@ public class Main {
                         }
                     } else {
                         for (Viaje viaje : viajesBonus) {
-                            if (viaje.calcularDistancia() == mejorDistancia) {
+                            if (viaje.calcularDistancia() == mejorDistanciaBonus) {
                                 coche.setViajeActual(viaje);
                                 break;
                             }

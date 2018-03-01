@@ -17,7 +17,7 @@ public class Main {
 
         viajes = new HashMap<>();
 
-        String archivo = "d_metropolis";
+        String archivo = "a_example";
         String in = archivo + ".in";
         String out = archivo + ".out";
 
@@ -76,6 +76,7 @@ public class Main {
             for(Coche coche : coches){
                 int mejorDistancia = 0;
                 ArrayList<Viaje> viajesCoche = new ArrayList<>();
+                ArrayList<Viaje> viajesBonus = new ArrayList<>();
                 if(coche.getViajeActual() == null){
                     //Codigo para asignar un viaje
                     for(Viaje viaje : viajes.values()){
@@ -84,20 +85,38 @@ public class Main {
                             if(viaje.getCocheAsignado() == null){
                                 //Si le da tiempo a completar el viaje
                                 if(coche.calcularTiempoViaje(viaje) + TActual <= viaje.getF()){
-                                    //Si el viaje tiene una longitud mejor que mejorDistancia
-                                    if(viaje.calcularDistancia() > mejorDistancia){
-                                        mejorDistancia = viaje.calcularDistancia();
-                                        viajesCoche.add(viaje);
+                                    //Criba de Bonus
+                                    if(coche.getCeldaActual().calcularDistancia(viaje.getCeldaInicio())+TActual <= viaje.getS()) {
+                                        //Si el viaje tiene una longitud mejor que mejorDistancia
+                                        if (viaje.calcularDistancia() > mejorDistancia) {
+                                            mejorDistancia = viaje.calcularDistancia();
+                                            viajesBonus.add(viaje);
+                                        }
+                                    }else{
+                                        //Si el viaje tiene una longitud mejor que mejorDistancia
+                                        if (viaje.calcularDistancia() > mejorDistancia) {
+                                            mejorDistancia = viaje.calcularDistancia();
+                                            viajesCoche.add(viaje);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                     //Iteramos por los mejores viajes para el coche y escogemos el mas largo
-                    for(Viaje viaje : viajesCoche){
-                        if(viaje.calcularDistancia() == mejorDistancia){
-                            coche.setViajeActual(viaje);
-                            break;
+                    if(viajesBonus.isEmpty()) {
+                        for (Viaje viaje : viajesCoche) {
+                            if (viaje.calcularDistancia() == mejorDistancia) {
+                                coche.setViajeActual(viaje);
+                                break;
+                            }
+                        }
+                    } else {
+                        for (Viaje viaje : viajesBonus) {
+                            if (viaje.calcularDistancia() == mejorDistancia) {
+                                coche.setViajeActual(viaje);
+                                break;
+                            }
                         }
                     }
                 }

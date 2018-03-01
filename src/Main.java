@@ -66,10 +66,6 @@ public class Main {
 
         for (int i = 0; i < F; i++) coches.add(new Coche(celdas[0][0]));
 
-
-
-
-
     }
 
     private static BufferedReader leerArchivo(String nombre) throws IOException {

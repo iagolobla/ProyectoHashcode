@@ -3,28 +3,20 @@ import java.util.ArrayList;
 public class Coche {
 
     private ArrayList<Viaje> viajesCoche;
-    Celda celdaActual;
+    private Celda celdaActual;
+    private int tickFinalViaje = 0;
 
     public Coche(Celda inicio) {
         this.celdaActual = inicio;
     }
 
-    public void mover(int direccion) {
-        switch (direccion) {
-            case 0: //izquierda, c-1
+    public void empezarViaje(int distancia){
+        this.tickFinalViaje = Main.TActual+distancia;
+    }
 
-                break;
-            case 1: //arriba, r-1
-
-                break;
-
-            case 2: //derecha, c+1
-
-                break;
-
-            case 3: //abajo, r+1
-
-                break;
+    public void moverCoche(Celda celdaFinal){
+        if(this.tickFinalViaje == Main.TActual){
+            celdaActual = celdaFinal;
         }
     }
 

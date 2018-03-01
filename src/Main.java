@@ -2,6 +2,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class Main {
 
         viajes = new HashMap<>();
 
-        String archivo = "a_example";
+        String archivo = "d_metropolis";
         String in = archivo + ".in";
         String out = archivo + ".out";
 
@@ -102,6 +103,19 @@ public class Main {
             }
         }
 
+
+        PrintWriter writer = new PrintWriter(out, "ASCII");
+        for (Coche c : coches) {
+            writer.print(c.getViajesCompletados().size()+ " ");
+            System.out.print(c.getViajesCompletados().size()+ " ");
+            for (Viaje v : c.getViajesCompletados()) {
+                writer.print(v.getId() + " ");
+                System.out.print(v.getId() + " ");
+            }
+            writer.println();
+            System.out.println();
+        }
+        writer.close();
     }
 
     private static BufferedReader leerArchivo(String nombre) throws IOException {

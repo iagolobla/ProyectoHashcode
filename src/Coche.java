@@ -33,6 +33,7 @@ public class Coche {
     //Cosas a tener en cuenta:
         //La distancia: A mayor distancia, mayor puntuación
         //El bonus: En caso de que llegue antes de la hora de salida, se le suma el bonus
+        //El tiempo en espera: Queremos evitar tiempo en el que los coches esten parados
     public int calcularPuntuacion(Viaje v){
         int Distancia = v.calcularDistancia();
         int Bonus = 0;

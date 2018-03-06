@@ -69,7 +69,7 @@ public class Main {
         //Iteramos por los Ticks
         for(TActual = 0;TActual < T;TActual++){
             for(Coche coche : coches){
-                int mejorPuntuacion = 0;
+                float mejorRatio = 0.0f;
                 ArrayList<Viaje> viajesCoche = new ArrayList<>();
                 if(coche.getViajeActual() == null){
                     //Codigo para asignar un viaje
@@ -82,8 +82,9 @@ public class Main {
                                     //Si le da tiempo a completar el viaje
                                     if (coche.calcularTiempoViaje(viaje) + TActual <= viaje.getF()) {
                                         //Si el viaje tiene una longitud mejor que mejorDistancia
-                                        if (coche.calcularPuntuacion(viaje) > mejorPuntuacion) {
-                                            mejorPuntuacion = coche.calcularPuntuacion(viaje);
+                                        float ratio = (float)coche.calcularPuntuacion(viaje)/(float)coche.calcularTiempoViaje(viaje);
+                                        if (ratio > mejorRatio) {
+                                            mejorRatio = ratio;
                                             viajesCoche.add(viaje);
                                         }
                                     }
@@ -94,7 +95,8 @@ public class Main {
 
                     //Iteramos por los mejores viajes para el coche y escogemos el de mas puntuacion
                     for (Viaje viaje : viajesCoche) {
-                        if (coche.calcularPuntuacion(viaje) == mejorPuntuacion) {
+                        float ratio = (float)coche.calcularPuntuacion(viaje)/(float)coche.calcularTiempoViaje(viaje);
+                        if (ratio == mejorRatio) {
                             coche.setViajeActual(viaje);
                             break;
                         }

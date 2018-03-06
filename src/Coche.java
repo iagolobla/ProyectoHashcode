@@ -30,6 +30,19 @@ public class Coche {
         return tiempoArrancar+v.calcularDistancia();
     }
 
+    //Cosas a tener en cuenta:
+        //La distancia: A mayor distancia, mayor puntuación
+        //El bonus: En caso de que llegue antes de la hora de salida, se le suma el bonus
+    public int calcularPuntuacion(Viaje v){
+        int Distancia = v.calcularDistancia();
+        int Bonus = 0;
+        //En caso de que la distancia hasta el inicio sea menor que lo que tarda en empezar el viaje
+        if(this.getCeldaActual().calcularDistancia(v.getCeldaInicio())+Main.TActual <= v.getS()){
+            Bonus = Main.B;
+        }
+        return Distancia+Bonus;
+    }
+
     public ArrayList<Viaje> getViajesCompletados() {
         return viajesCompletados;
     }

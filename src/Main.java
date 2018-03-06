@@ -16,7 +16,7 @@ public class Main {
 
     public static void main (String[] args) throws Exception {
 
-        String archivo = "a_example";
+        String archivo = "e_high_bonus";
         String in = archivo + ".in";
         String out = archivo + ".out";
 
@@ -69,7 +69,7 @@ public class Main {
         //Iteramos por los Ticks
         for(TActual = 0;TActual < T;TActual++){
             for(Coche coche : coches){
-                int mejorDistancia = 0;
+                int mejorPuntuacion = 0;
                 ArrayList<Viaje> viajesCoche = new ArrayList<>();
                 if(coche.getViajeActual() == null){
                     //Codigo para asignar un viaje
@@ -82,8 +82,8 @@ public class Main {
                                     //Si le da tiempo a completar el viaje
                                     if (coche.calcularTiempoViaje(viaje) + TActual <= viaje.getF()) {
                                         //Si el viaje tiene una longitud mejor que mejorDistancia
-                                        if (viaje.calcularDistancia() > mejorDistancia) {
-                                            mejorDistancia = viaje.calcularDistancia();
+                                        if (coche.calcularPuntuacion(viaje) > mejorPuntuacion) {
+                                            mejorPuntuacion = coche.calcularPuntuacion(viaje);
                                             viajesCoche.add(viaje);
                                         }
                                     }
@@ -92,9 +92,9 @@ public class Main {
                         }
                     }
 
-                    //Iteramos por los mejores viajes para el coche y escogemos el mas largo
+                    //Iteramos por los mejores viajes para el coche y escogemos el de mas puntuacion
                     for (Viaje viaje : viajesCoche) {
-                        if (viaje.calcularDistancia() == mejorDistancia) {
+                        if (coche.calcularPuntuacion(viaje) == mejorPuntuacion) {
                             coche.setViajeActual(viaje);
                             break;
                         }
